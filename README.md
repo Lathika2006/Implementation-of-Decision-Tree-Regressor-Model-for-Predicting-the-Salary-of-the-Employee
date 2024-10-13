@@ -8,11 +8,10 @@ To write a program to implement the Decision Tree Regressor Model for Predicting
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. 
-2. 
-3. 
-4. 
-
+Import the libraries and read the data frame using pandas.
+Calculate the null values present in the dataset and apply label encoder.
+Determine test and training data set and apply decison tree regression in dataset.
+calculate Mean square error,data prediction and r2.
 ## Program:
 ```
 
@@ -21,45 +20,62 @@ Developed by: LATHIKA L J
 RegisterNumber:  212223220050
 
 import pandas as pd
-from sklearn.datasets import load_iris
-from sklearn.linear_model import SGDClassifier
+
+data=pd.read_csv("/content/Salary.csv")
+
+data.head()
+
+data.info()
+
+data.isnull().sum()
+
+from sklearn.preprocessing import LabelEncoder
+
+le=LabelEncoder()
+
+data["Position"]=le.fit_transform(data["Position"])
+
+data.head()
+
+x=data[["Position", "Level"]]
+
+y=data["Salary"]
+
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score,confusion_matrix
 
-iris=load_iris()
+x_train,x_test,y_train, y_test=train_test_split(x, y, test_size=0.2, random_state=2)
 
-df=pd.DataFrame(data=iris.data, columns=iris.feature_names)
-df['target']= iris.target
-print(df.head())
+from sklearn.tree import DecisionTreeRegressor
 
-X=df.drop('target',axis=1)
-y=df['target']
+dt=Decision TreeRegressor()
 
-X_train,X_test,y_train,y_test=train_test_split(X,y, test_size=0.2, random_state=42)
+dt.fit(x_train, y_train)
 
-sgd_clf=SGDClassifier(max_iter=1000, tol=1e-3)
+y_pred=dt.predict(x_test)
 
-sgd_clf.fit(X_train,y_train)
+from sklearn import metrics
 
-y_pred =sgd_clf.predict(X_test)
+mse=metrics.mean_squared_error(y_test,y_pred) mse
 
-accuracy=accuracy_score(y_test,y_pred)
-print(f"Accuracy: {accuracy:.3f}")
+462500000.0
 
-cm=confusion_matrix(y_test, y_pred)
-print("confusion Matrix:")
-print(cm)
+r2=metrics.r2_score(y_test,y_pred)
 
+r2
+
+0.48611111111111116
+
+dt.predict([[5,6]])
+
+/usr/local/lib/python3.7/dist-packages/sklearn/
+
+"X does not have valid feature names, but" array ([200000.])
 ```
 
 ## Output:
-
-![image](https://github.com/user-attachments/assets/22c0982f-d237-4bac-8d07-a2e3537a3b4e)
-
-![image](https://github.com/user-attachments/assets/b033f9ef-51a4-46db-80ea-eb9c66ed9c70)
-
-![image](https://github.com/user-attachments/assets/fd6791e4-6f92-4efd-af60-b2db39917c3d)
-
+![image](https://github.com/user-attachments/assets/425fcf15-e572-4996-92e1-a613bed89db4)
+![image](https://github.com/user-attachments/assets/bdea913f-6936-4727-a340-a550805c9901)
+![image](https://github.com/user-attachments/assets/a2c0edad-b1c2-4737-b88e-5e5b396f45fc)
 
 ## Result:
 Thus the program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee is written and verified using python programming.
