@@ -9,8 +9,11 @@ To write a program to implement the Decision Tree Regressor Model for Predicting
 
 ## Algorithm
 Import the libraries and read the data frame using pandas.
+
 Calculate the null values present in the dataset and apply label encoder.
+
 Determine test and training data set and apply decison tree regression in dataset.
+
 calculate Mean square error,data prediction and r2.
 ## Program:
 ```
@@ -73,8 +76,7 @@ dt.predict([[5,6]])
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/425fcf15-e572-4996-92e1-a613bed89db4)
-![image](https://github.com/user-attachments/assets/bdea913f-6936-4727-a340-a550805c9901)
+## MSE & R2 & PREDICTED
 ![image](https://github.com/user-attachments/assets/a2c0edad-b1c2-4737-b88e-5e5b396f45fc)
 
 ## Result:
